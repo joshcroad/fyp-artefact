@@ -1,0 +1,31 @@
+{
+  "name": "fyp-artefact",
+  "description": "A Comparison between MongoDB and Redis NoSQL Data Stores, using a dedicated NodeJS server.",
+  "version": "0.0.1",
+  "main": "lib/app.js",
+  "homepage": "http://localhost:3000",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/joshcroad/fyp-artefact.git"
+  },
+  "contributors": [
+    {
+      "name": "Joshua Croad",
+      "email": "joshcroad@gmail.com",
+      "web": "http://joshcroad.com"
+    }
+  ],
+  "dependencies": {
+    "mongoose": "3.6.x",
+    "redis": ""
+  },
+  "devDependencies": {
+    "nodemon": "0.7.x"
+  },
+  "scripts": {
+    "start": ""
+  },
+  "engines": {
+    "node": "0.10.x"
+  }
+}

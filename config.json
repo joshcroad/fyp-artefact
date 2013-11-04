@@ -1,12 +1,15 @@
 {
   "port": 3000,
+  "caching": {
+    "maxAge": 86400000
+  },
   "debug": true,
   "dbs": {
     "redis": {
       "cred": ""
     },
-    "mongo": {
-      "cred": "mongodb://localhost/"
+   "mongo": {
+      "cred": "mongodb://localhost/fyp-mongo"
     }
   }
 }

@@ -9,7 +9,7 @@
       "cred": ""
     },
    "mongo": {
-      "cred": "mongodb://localhost/fyp-mongo"
+      "uri": "mongodb://localhost/fyp-mongo"
     }
   }
 }

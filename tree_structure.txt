@@ -1,8 +1,12 @@
-lib
-|   app.js
-|   handler.js
-|   handlers
-|   |   mongo.js
-|   |   redis.js
-config.json
-package.json
+/
+| - /lib
+|   | - app.js
+|   | - handler.js
+|   | - /handlers
+|   |   | - mongo.js
+|   |   | - redis.js
+|   | - /dbs
+|   |   | - mongo.js
+|   |   | - redis.js
+| - config.json
+| - package.json

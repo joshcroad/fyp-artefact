@@ -1,11 +1,22 @@
 {
-  "port": 3000,
+  "env": {
+    "dev": true,
+    "port": 3000
+  },
+  "audit": {
+    "path": "./tests/",
+    "filename": "result.txt"
+  },
   "dbs": {
-    "redis": {
-      "cred": ""
+   "mongo": {
+      "scheme": "mongodb",
+      "host": "127.0.0.1",
+      "port": "27017",
+      "database": "fyp-mongo"
     },
-    "mongo": {
-      "cred": "mongodb://localhost/"
-    }
+    "redis": {}
+  },
+  "caching": {
+    "maxAge": 43200000
   }
 }

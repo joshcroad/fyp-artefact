@@ -3,6 +3,10 @@
     "dev": true,
     "port": 3000
   },
+  "audit": {
+    "path": "./tests/",
+    "filename": "result.txt"
+  },
   "dbs": {
    "mongo": {
       "scheme": "mongodb",

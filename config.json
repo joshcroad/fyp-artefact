@@ -4,8 +4,8 @@
     "port": 3000
   },
   "audit": {
-    "path": "./tests/",
-    "filename": "result.txt"
+    "path": "./output/",
+    "filename": "record.txt"
   },
   "dbs": {
    "mongo": {

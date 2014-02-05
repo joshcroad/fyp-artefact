@@ -3,12 +3,8 @@
     "dev": true,
     "port": 3000
   },
-  "audit": {
-    "path": "./output/",
-    "filename": "record.txt"
-  },
   "dbs": {
-   "mongo": {
+    "mongo": {
       "scheme": "mongodb",
       "host": "127.0.0.1",
       "port": "27017",

@@ -17,7 +17,8 @@
   ],
   "dependencies": {
     "mongodb": "1.3.x",
-    "redis": ""
+    "redis": "0.10.x",
+    "q": "1.0.x"
   },
   "devDependencies": {
     "nodemon": "0.7.x"

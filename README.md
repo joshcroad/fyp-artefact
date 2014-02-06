@@ -16,7 +16,8 @@ node lib/app.js write 10 100000
 ```
 
 The steps
-  1. Write `args[1] // In this case 10` documents to Mongo
-  2. Record the execution time
-  3. Repeat `args[1] * 10` until `args[1] === 100000`
+  1. Write `args[1]` documents to Mongo.
+  2. Record the execution time.
+  3. Repeat `args[1] = args[1] * 10` until `args[1] === 100000`.
   4. Repeat with execution on *Redis*.
+  5. Check out the output files `./lib/output/[dbname]-r.txt`.

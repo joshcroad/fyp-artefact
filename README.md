@@ -8,9 +8,9 @@ Command line tool which takes user input and automatically writes execution to a
 ## Running the application
 To run the application in terminal, the machine **must** have both mongo, redis and node drivers installed globally.
 
-[Node.js](http://nodejs.org/)
-[Mongo Driver](http://docs.mongodb.org/manual/installation/)
-[Redis Driver](http://redis.io/download)
+ - [Node.js](http://nodejs.org/)
+ - [Mongo Driver](http://docs.mongodb.org/manual/installation/)
+ - [Redis Driver](http://redis.io/download)
 
 Once installed, `cd` into the directory and run
 
@@ -19,9 +19,9 @@ joshcroad$ node lib/app.js [param1] [param2] [param3]
 ```
 
 #### Parameters
-**[param1]** - 'write' or 'search'
-**[param2]** - Optional. 10, 100, 1000, or 10000. **Default: 10**.
-**[param3]** - Optional. 100, 1000, 10000, 100000. **Default: 100000**.
+ - **[param1]** - 'write' or 'search'
+ - **[param2]** - Optional. 10, 100, 1000, or 10000. **Default: 10**.
+ - **[param3]** - Optional. 100, 1000, 10000, 100000. **Default: 100000**.
 
 ## Tests
 

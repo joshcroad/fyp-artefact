@@ -9,9 +9,13 @@
         */
         loaded = function () {
             var title = document.getElementById("chart-heading");
-            title.innerText = chartData.title;
             context = document.getElementById("DOMChart").getContext("2d");
-            chart = new Chart(context).Line(chartData);
+            if (chartData) {
+                title.innerText = chartData.title;
+                chart = new Chart(context).Line(chartData);
+            } else {
+              title.innerText = 'Please run a test first.';
+            }
         };
 
     window.addEventListener('load', loaded, false);

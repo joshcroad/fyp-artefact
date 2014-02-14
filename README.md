@@ -20,7 +20,9 @@ joshcroad$ node lib/app.js [flag] [param1] [param2]
 
 ### [flag]
 `--write` or `-w` - Initialise the write tests.
+
 `--search` or `-s` - Initialise the search tests.
+
 `--update` or `-u` - Initialise the update tests.
 
 ### [param1]

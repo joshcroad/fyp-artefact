@@ -18,7 +18,8 @@
   "dependencies": {
     "mongodb": "1.3.x",
     "redis": "0.10.x",
-    "q": "1.0.x"
+    "q": "1.0.x",
+    "cli-color": "0.2.x"
   },
   "devDependencies": {
     "nodemon": "0.7.x"

@@ -1,7 +1,7 @@
 {
   "name": "fyp-artefact",
   "description": "A Comparison between MongoDB and Redis NoSQL Data Stores, using a dedicated NodeJS server.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "lib/app.js",
   "homepage": "http://localhost:3000",
   "repository": {

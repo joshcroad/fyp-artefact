@@ -1,4 +1,4 @@
 /output/
 *.rdb
 /node_modules/
-/public/*.csv
+*.csv

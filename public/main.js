@@ -1,28 +1,26 @@
-var margin = {top: 20, right: 80, bottom: 30, left: 100},
-    width = 1400 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+var margin = {top: 20, right: 20, bottom: 30, left: 100},
+    width = 1000 - margin.left - margin.right,
+    height = 700 - margin.top - margin.bottom;
 
-var parseDate = d3.time.format("%Y%m%d").parse;
+var x0 = d3.scale.ordinal()
+    .rangeRoundBands([0, width], .1);
 
-var x = d3.time.scale()
-    .range([0, width]);
+var x1 = d3.scale.ordinal();
 
 var y = d3.scale.linear()
     .range([height, 0]);
 
-var color = d3.scale.category10();
+var color = d3.scale.ordinal()
+    .range(["#2ecc71", "#c0392b"]);
 
 var xAxis = d3.svg.axis()
-    .scale(x)
+    .scale(x0)
     .orient("bottom");
 
 var yAxis = d3.svg.axis()
     .scale(y)
-    .orient("left");
-
-var line = d3.svg.line()
-    .x(function(d) { return x(d.records); })
-    .y(function(d) { return y(d.avgtime); });
+    .orient("left")
+    .tickFormat(d3.format(".2s"));
 
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -31,22 +29,17 @@ var svg = d3.select("body").append("svg")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 d3.csv("data-search.csv", function(error, data) {
-  color.domain(d3.keys(data[0]).filter(function(key) { return key !== "records"; }));
+  var databases = d3.keys(data[0]).filter(function(key) { return key !== "Records"; });
 
-  var databases = color.domain().map(function(name) {
-    return {
-      name: name,
-      values: data.map(function(d) {
-        return {records: d.records, avgtime: +d[name]};
-      })
-    };
+  data.forEach(function(d) {
+    d.times = databases.map(function(name) { return {name: name, value: +d[name]}; });
   });
 
-  x.domain([10, 100000]);
-
+  x0.domain(data.map(function(d) { return d.Records; }));
+  x1.domain(databases).rangeRoundBands([0, x0.rangeBand()]);
   y.domain([
-    d3.min(databases, function(c) { return d3.min(c.values, function(v) { return v.avgtime; }); }),
-    d3.max(databases, function(c) { return d3.max(c.values, function(v) { return v.avgtime; }); })
+    d3.min(data, function(d) { return d3.min(d.times, function (d) { return d.value; }); }),
+    d3.max(data, function(d) { return d3.max(d.times, function(d) { return d.value; }); })
   ]);
 
   svg.append("g")
@@ -56,21 +49,40 @@ d3.csv("data-search.csv", function(error, data) {
 
   svg.append("g")
       .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("Average Time (nanoseconds)");
+      .call(yAxis);
 
-  var database = svg.selectAll(".database")
-      .data(databases)
+  var state = svg.selectAll(".database")
+      .data(data)
     .enter().append("g")
-      .attr("class", "database");
+      .attr("class", "g")
+      .attr("transform", function(d) { return "translate(" + x0(d.Records) + ",0)"; });
 
-  database.append("path")
-      .attr("class", "line")
-      .attr("d", function(d) { return line(d.values); })
-      .style("stroke", function(d) { return color(d.name); });
+  state.selectAll("rect")
+      .data(function(d) { return d.times; })
+    .enter().append("rect")
+      .attr("width", x1.rangeBand())
+      .attr("x", function(d) { return x1(d.name); })
+      .attr("y", function(d) { return y(d.value); })
+      .attr("height", function(d) { return height - y(d.value); })
+      .style("fill", function(d) { return color(d.name); });
+
+  var legend = svg.selectAll(".legend")
+      .data(databases.slice().reverse())
+    .enter().append("g")
+      .attr("class", "legend")
+      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+  legend.append("rect")
+      .attr("x", width - 18)
+      .attr("width", 18)
+      .attr("height", 18)
+      .style("fill", color);
+
+  legend.append("text")
+      .attr("x", width - 24)
+      .attr("y", 9)
+      .attr("dy", ".35em")
+      .style("text-anchor", "end")
+      .text(function(d) { return d; });
+
 });

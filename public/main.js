@@ -28,14 +28,14 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv("data-update-100000.csv", function(error, data) {
-  var databases = d3.keys(data[0]).filter(function(key) { return key !== "Iteration"; });
+d3.csv("data-search.csv", function(error, data) {
+  var databases = d3.keys(data[0]).filter(function(key) { return key !== "Records"; });
 
   data.forEach(function(d) {
     d.times = databases.map(function(name) { return {name: name, value: +d[name]}; });
   });
 
-  x0.domain(data.map(function(d) { return d.Iteration; }));
+  x0.domain(data.map(function(d) { return d.Records; }));
   x1.domain(databases).rangeRoundBands([0, x0.rangeBand()]);
   y.domain([
     d3.min(data, function(d) { return d3.min(d.times, function (d) { return d.value; }); }),
@@ -55,7 +55,7 @@ d3.csv("data-update-100000.csv", function(error, data) {
       .data(data)
     .enter().append("g")
       .attr("class", "g")
-      .attr("transform", function(d) { return "translate(" + x0(d.Iteration) + ",0)"; });
+      .attr("transform", function(d) { return "translate(" + x0(d.Records) + ",0)"; });
 
   state.selectAll("rect")
       .data(function(d) { return d.times; })
